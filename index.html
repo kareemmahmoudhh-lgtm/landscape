@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Landscape Assemblies – Floor Type Library</title>
+<style>
+:root{--tb:#2f353b;--rb:#f1f3f5;--pn:#f7f8f9;--ln:#b9c0c7;--tx:#1f2328;--mu:#5b6670;--ac:#1b6ec2;--sel:#cfe4f8;--cv:#fff;--ink:#111;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--tb:#1c2024;--rb:#2b3036;--pn:#262b30;--ln:#454d55;--tx:#e3e7ea;--mu:#9aa5ae;--ac:#59a7f0;--sel:#27425e;--cv:#1e2226;--ink:#e8e8e8}}
+:root[data-theme="dark"]{--tb:#1c2024;--rb:#2b3036;--pn:#262b30;--ln:#454d55;--tx:#e3e7ea;--mu:#9aa5ae;--ac:#59a7f0;--sel:#27425e;--cv:#1e2226;--ink:#e8e8e8}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--pn);color:var(--tx);font:13.5px/1.45 "Segoe UI","Selawik",Arial,sans-serif}
+.title{background:var(--tb);color:#e8ecef;padding:7px 14px;font-size:13px}
+.tabs{background:var(--rb);display:flex;border-bottom:1px solid var(--ln);padding:0 8px}
+.tab{border:0;background:none;color:var(--tx);padding:8px 16px;font:inherit;cursor:pointer;border-bottom:3px solid transparent}
+.tab[aria-pressed=true]{border-bottom-color:var(--ac);font-weight:600}
+.ribbon{background:var(--rb);border-bottom:1px solid var(--ln);display:flex;gap:6px;padding:6px 10px;align-items:stretch}
+.grp{display:flex;gap:4px;padding-right:12px;border-right:1px solid var(--ln);flex-direction:column}
+.grp .bs{display:flex;gap:4px}
+.grp small{color:var(--mu);font-size:11px;text-align:center}
+.rb{border:1px solid transparent;background:none;color:var(--tx);padding:5px 12px;font:inherit;cursor:pointer;border-radius:3px}
+.rb:hover{background:var(--sel);border-color:var(--ac)}
+.app{display:grid;grid-template-columns:270px minmax(0,1fr) 330px;min-height:calc(100vh - 118px)}
+.pane{background:var(--pn);border-right:1px solid var(--ln);min-width:0}
+.pane h3{margin:0;padding:5px 10px;background:var(--rb);border-bottom:1px solid var(--ln);font-size:12.5px;font-weight:600}
+.pane.r{border-right:0;border-left:1px solid var(--ln)}
+#q{width:calc(100% - 16px);margin:8px;padding:5px 8px;border:1px solid var(--ln);background:var(--cv);color:var(--tx);font:inherit}
+#tree{max-height:calc(100vh - 190px);overflow:auto;padding-bottom:10px}
+details>summary{cursor:pointer;padding:4px 10px;font-weight:600;list-style:none}
+details>summary::before{content:"▸ ";color:var(--mu)}
+details[open]>summary::before{content:"▾ "}
+.it{display:block;width:100%;text-align:left;border:0;background:none;color:var(--tx);padding:3px 10px 3px 28px;font:inherit;cursor:pointer}
+.it:hover{background:var(--rb)}
+.it[aria-pressed=true]{background:var(--sel);color:var(--tx);outline:1px solid var(--ac)}
+:focus-visible{outline:2px solid var(--ac);outline-offset:-2px}
+.view{background:var(--cv);border-right:1px solid var(--ln);padding:12px;min-width:0}
+.wrap{overflow-x:auto}
+svg{display:block;min-width:560px;width:100%;height:auto}
+svg text{fill:var(--ink);font:11.5px "Segoe UI",Arial,sans-serif}
+svg .p{fill:none;stroke:var(--ink);stroke-width:.7;opacity:.7}
+svg .f{fill:var(--ink);opacity:.7}
+.vt{text-align:center;margin-top:6px}
+.vt b{display:inline-block;border-bottom:2px solid var(--ink);padding:0 24px 2px;font-size:14px}
+.vt div{color:var(--mu);font-size:12px}
+table{border-collapse:collapse;width:100%}
+th,td{border-bottom:1px solid var(--ln);padding:4px 8px;text-align:left;vertical-align:top;font-size:12.5px}
+th{background:var(--rb);font-weight:600}
+.kv td:first-child{color:var(--mu);width:40%}
+.sw{display:inline-block;width:12px;height:12px;border:1px solid var(--ink);margin-right:6px;vertical-align:-2px}
+td input{width:66px;border:1px solid var(--ln);background:var(--cv);color:var(--tx);padding:2px 4px;font:inherit}
+.sm{color:var(--mu);font-size:11.5px;display:block}
+.note{color:var(--mu);font-size:11.5px;padding:8px 10px}
+.empty{padding:40px 10px;color:var(--mu);text-align:center}
+.form{max-width:720px}.form h3{margin:0 0 8px;background:none;border:0;font-size:15px;padding:0}
+.form input,.form select{border:1px solid var(--ln);background:var(--cv);color:var(--tx);padding:4px 6px;font:inherit;min-width:0}
+.fg{display:grid;grid-template-columns:110px 1fr;gap:6px;align-items:center;margin-bottom:6px}
+.fr{display:flex;gap:4px;margin:4px 0;flex-wrap:wrap}.fr .nm{flex:1 1 150px}.fr .mm{width:70px}.fr .nt{flex:1 1 120px}
+.btn{border:1px solid var(--ln);background:var(--rb);color:var(--tx);padding:5px 12px;font:inherit;cursor:pointer;border-radius:3px}
+.btn.pri{background:var(--ac);color:#fff;border-color:var(--ac)}
+.cu{color:var(--ac);font-size:11px;margin-left:4px}
+#fm{margin:8px 0;color:var(--mu)}
+@media (max-width:980px){.app{grid-template-columns:1fr}.pane{border:0;border-bottom:1px solid var(--ln)}#tree{max-height:260px}.pane.r{border:0}}
+@media print{.title,.tabs,.ribbon,.app>.pane:first-child{display:none}.app{display:block}}
+</style>
+</head>
+<body>
+<div class="title">Landscape Assemblies – Floor Type Library</div>
+<div class="tabs"><button class="tab" data-c="h" aria-pressed="true">Hardscape</button><button class="tab" data-c="s" aria-pressed="false">Softscape</button></div>
+<div class="ribbon"><div class="grp"><div class="bs"><button class="rb" id="cp">Copy as Text</button><button class="rb" id="pr">Print</button><button class="rb" id="rs">Reset Values</button></div><small>Assembly</small></div><div class="grp" id="lib" hidden><div class="bs"><button class="rb" id="add">Add Floor Type</button></div><small>Library (owner only)</small></div></div>
+<div class="app">
+<div class="pane"><h3>Project Browser – Floor Types</h3><input type="search" id="q" placeholder="Search types…" aria-label="Search"><div id="tree"></div></div>
+<div class="view"><div id="view"></div></div>
+<div class="pane r"><h3>Properties</h3><div id="props"></div></div>
+</div>
+<script>
+var DN={paver:'Paver',stone:'Natural stone',mort:'Mortar bed',sand:'Bedding sand',agg:'Crushed stone base',asph:'Asphalt',soil:'Planting soil',mulch:'Mulch',turf:'Turf',grav:'Gravel',plant:'Planting',drain:'Drainage layer',rub:'Rubber surfacing',foam:'Shock pad',timber:'Decking',air:'Air gap',water:'Water',sub:'Compacted subgrade',wp:'Waterproofing membrane',geo:'Geotextile',rb:'Root barrier',pm:'Protection mat',conc:'Concrete slab',slab:'RC structural slab'};
+var F={paver:'#b5aea1',stone:'#a8b0b6',mort:'#d0c9b8',sand:'#e3d09a',agg:'#8f9296',asph:'#2b2e33',soil:'#6a4a30',mulch:'#8c5b2c',turf:'#58a54c',grav:'#cfc2a8',plant:'#3f8a3a',drain:'#4aa3c7',rub:'#c4483c',foam:'#e7b64b',timber:'#b98a52',air:'#ffffff',water:'#4a90c4',sub:'#7d6247',conc:'#9ea3a8',slab:'#9ea3a8',geo:'#7fc07f',wp:'#111111',rb:'#2e6b3a',pm:'#9a9a9a'};
+var HP={conc:'conc',slab:'conc',sand:'sand',foam:'sand',rub:'sand',asph:'sand',agg:'agg',sub:'sub',soil:'soil',mulch:'mulch',paver:'paver',stone:'stone',mort:'mort',turf:'turf',grav:'grav',plant:'plant',drain:'drain',water:'drain',timber:'timber'};
+var FN={geo:'Membrane Layer',wp:'Membrane Layer',rb:'Membrane Layer',pm:'Membrane Layer',sub:'Existing Ground',sand:'Substrate [2]',mort:'Substrate [2]',foam:'Substrate [2]',soil:'Growing Medium'};
+var RAW=[
+"h|Pavers|Interlock Paver – Pedestrian|200×100 mm, 60 thick|Walkways, plazas|paver:Concrete interlock paver:60:3 mm joint sand;sand::30;agg::150:Compact 95% Proctor;geo;sub",
+"h|Pavers|Interlock Paver – Vehicular|200×100 mm, 80 thick|Driveways, light traffic|paver:Concrete interlock paver:80;sand::30;agg::150;agg:Sub-base:200;geo;sub",
+"h|Pavers|Permeable Interlock Paver|200×100 mm, 80 thick, open joints|SuDS parking|paver:Permeable paver:80:Joints 3–5 mm;agg:Grit bedding 2–6 mm:40;agg:Open-graded base:150;agg:Open-graded sub-base:200;geo;sub",
+"h|Pavers|Concrete Flag Paver|500×500 mm, 50 thick|Footpaths, plazas|paver:Concrete flag:50;sand::30;agg::100;geo;sub",
+"h|Pavers|Clay Brick Paver|200×100 mm, 60 thick|Garden and heritage paths|paver:Clay brick paver:60;sand::30;agg::150;geo;sub",
+"h|Pavers|Granite Setts / Cobbles|100×100 mm, 100 thick|Streets, plaza edges|stone:Granite sett:100;mort:Mortar bedding:40;conc:Concrete base:150;agg::150;sub",
+"h|Pavers|Grass Paver Grid|Plastic grid 500×500 mm, 50 thick|Overflow parking, fire access|plant:Grass in grid cells:50;sand:Sand and topsoil fill:25;agg::150;geo;sub",
+"h|Pavers|Paving on Structural Slab|600×600 mm, 60 thick|Plazas over parking|paver:Paver:60;sand:Grit bedding:30;drain:Drainage mat:20;pm;mort:Screed to falls:50;wp;slab::250",
+"h|Stone & Tile|Granite on Mortar|600×300 mm, 30 thick|Entrances, feature plazas|stone:Granite slab:30:5 mm joints;mort::30:Cement sand 1 to 3;conc:RC slab:100:Mesh 150×150×6;agg::150;sub",
+"h|Stone & Tile|Granite – Heavy Duty|Slabs 50 thick|Vehicular plazas|stone:Granite slab:50;mort::40;conc:RC slab:150;agg::200;sub",
+"h|Stone & Tile|Limestone / Sandstone on Mortar|600×600 mm, 30 thick|Terraces, walkways|stone:Limestone slab:30;mort::30;conc:RC slab:100;agg::150;sub",
+"h|Stone & Tile|Travertine / Marble Plaza|600×400 mm, 20 thick|Premium plazas|stone:Travertine:20;mort::30;conc:RC slab:100;agg::150;sub",
+"h|Stone & Tile|Porcelain Tile on Mortar|600×600 mm, 20 thick|Terraces, outdoor areas|stone:Porcelain tile:20;mort:Adhesive:10;mort:Screed:40;wp;conc:RC slab:100;agg::150;sub",
+"h|Stone & Tile|Porcelain Tile on Pedestals|600×600 mm, 20 thick|Roof terraces, raised decks|stone:Porcelain tile:20;air:Pedestal void (adjustable 30–150):50;pm;wp;mort:Screed to falls:50;slab::200",
+"h|Concrete & Asphalt|Broom-Finish Concrete Path|3×3 m panels, 100 thick|Pedestrian paths|conc:Concrete finish:100:Joints every 3 m;geo:PE sheet;sand:Sand blinding:50;agg::100;sub",
+"h|Concrete & Asphalt|Stamped Concrete|Stamped panels, 100 thick|Plazas, driveways|conc:Stamped concrete:100:Colour hardener and release;geo:PE sheet;sand:Sand blinding:50;agg::150;sub",
+"h|Concrete & Asphalt|Exposed Aggregate Concrete|Panels, 120 thick|Paths, plazas|conc:Exposed aggregate concrete:120;geo:PE sheet;sand:Sand blinding:50;agg::150;sub",
+"h|Concrete & Asphalt|Heavy Duty Concrete Slab|Panels, 200 thick|Service yards, fire lanes|conc:RC slab:200:Top and bottom mesh;geo:PE sheet;agg::150;agg:Sub-base:150;sub",
+"h|Concrete & Asphalt|Asphalt Road|Binder and wearing course|Internal roads, parking|asph:Wearing course:40;asph:Binder course:60:Tack coat between;agg:Base course:150;agg:Sub-base:200;sub",
+"h|Concrete & Asphalt|Asphalt Path / Cycle Track|Wearing course 40|Cycle tracks, paths|asph:Wearing course:40;agg::100;agg:Sub-base:150;geo;sub",
+"h|Gravel & Resin|Resin-Bound Gravel|3–6 mm gravel, 20 thick|Garden paths, driveways|grav:Resin bound gravel:20;asph:Asphalt base:40;agg::150;geo;sub",
+"h|Gravel & Resin|Stabilised Gravel|Compacted fines, 50 thick|Informal paths|grav:Stabilised gravel:50;agg::100;geo;sub",
+"h|Gravel & Resin|Loose Gravel Path|10–20 mm gravel, 50 thick|Garden paths|grav:Decorative gravel:50:Metal edging;agg::100;geo:Weed membrane;sub",
+"h|Play & Sports|Playground EPDM Rubber|EPDM 15 over SBR 25|Playgrounds|rub:EPDM wearing layer:15;rub:SBR shock layer:25:Thickness per fall height;conc:Concrete or asphalt base:100;agg::150;sub",
+"h|Play & Sports|Tennis Court Acrylic|Acrylic over asphalt|Sports courts|rub:Acrylic coating:3;asph:Asphalt wearing:40;asph:Asphalt base:60;agg::150;agg:Sub-base:100;sub",
+"h|Decking & Water|Timber Deck – Ground Level|Boards 140×25 mm|Garden decks|timber:Decking board:25;timber:Joists:50;grav:Gravel bed:100;geo:Weed membrane;sub",
+"h|Decking & Water|Composite Deck on Pedestals|Boards 140×25 mm|Roof terraces|timber:Composite board:25;timber:Battens:50;air:Pedestal void:50;pm;wp;mort:Screed to falls:50;slab::200",
+"h|Decking & Water|Boardwalk on Piles|Boards 25 on 150 bearers|Wetlands, waterfront|timber:Decking board:25;timber:Joists:100;timber:Bearers:150;air:Clear void:300",
+"h|Decking & Water|Water Feature Basin|Water depth 300|Pools, ponds|water:Water depth:300;stone:Tile finish:20;mort::20;wp;conc:RC slab:200;conc:Blinding concrete:50;agg::100;sub",
+"s|Lawn|Natural Turf – Sod|Rolls 600×1600 mm|Lawns|turf:Turf sod:25;soil::150:Topsoil;sub:Loosened subsoil:150;sub",
+"s|Lawn|Seeded Lawn|Seed mix|Parks, large lawns|turf:Seed and germination:10;soil::150;sub:Loosened subsoil:150;sub",
+"s|Lawn|Sports Turf – Sand Rootzone|Rootzone 250|Football, sports fields|turf:Turf:25;sand:Sand rootzone:250;agg:Drainage gravel:100;geo;sub",
+"s|Lawn|Artificial Turf|Rolls 4 m wide|Sports, play areas|turf:Artificial turf:40:Sand infill;foam:Shock pad:10:Optional;agg:Fine aggregate:50;agg::100;sub",
+"s|Lawn|Wildflower Meadow|Low fertility soil|Naturalised areas|plant:Meadow mix:20;soil:Low-fertility topsoil:100;sub:Loosened subsoil:150;sub",
+"s|Planting Beds|Shrub Bed|Mulch 75, soil 450|Shrub planting|mulch::75;soil::450;sub:Loosened subsoil:200;sub",
+"s|Planting Beds|Groundcover / Perennial Bed|Mulch 50, soil 300|Perennials, groundcover|mulch::50;soil::300;sub:Loosened subsoil:150;sub",
+"s|Planting Beds|Hedge Planting Strip|Soil 600 deep|Hedges, screens|mulch::75;soil::600;sub:Loosened subsoil:200;sub",
+"s|Planting Beds|Gravel Garden|Lean soil, gravel mulch|Drought-tolerant planting|grav:Gravel mulch:75;soil:Lean planting soil:200;sub:Loosened subsoil:150;sub",
+"s|Planting Beds|Raised Planter|Concrete planter|Terraces, podium|mulch::75;soil::600;geo:Filter fleece;drain:Drainage layer:50;pm;wp;conc:Planter base slab:150",
+"s|Trees|Tree Pit – Open|Pit 2× root ball width|Trees in lawns or beds|mulch::75;soil::1000;agg:Drainage gravel:150:With drain pipe;geo;sub",
+"s|Trees|Tree Pit – Structural Soil|Under paving|Street trees|paver:Paving:60;sand::30;soil:Structural soil:600;geo;sub",
+"s|Trees|Tree Pit – Soil Cells|Modular soil cell system|Urban street trees|paver:Paving:60;sand::30;soil:Soil cell system with soil:600;agg::100;geo;sub",
+"s|Roof & Podium|Extensive Green Roof|Sedum, substrate 100|Light roofs|plant:Sedum vegetation:30;soil:Growing substrate:100;geo:Filter fleece;drain:Drainage layer:25;pm;rb;wp;slab::150",
+"s|Roof & Podium|Semi-Intensive Green Roof|Grasses and perennials|Medium load roofs|plant:Planting:50;soil:Growing substrate:200;geo:Filter fleece;drain:Drainage board:40;pm;rb;wp;slab::150",
+"s|Roof & Podium|Intensive Podium Planting|Soil 400|Gardens over parking|mulch::50;soil::400;geo:Filter fleece;drain:Drainage board:60;pm;rb;wp;slab::250",
+"s|Roof & Podium|Deep Soil Podium (Trees)|Soil 1000|Large trees on slabs|mulch::75;soil::1000;geo:Filter fleece;drain:Drainage board:60;pm;rb;wp;slab::300",
+"s|Drainage & Play|Rain Garden (Bioretention)|Ponding 200, media 500|SuDS planting|air:Ponding zone:200;mulch::75;soil:Filter media:500;sand:Transition sand:100;agg:Drainage gravel with pipe:200;geo;sub",
+"s|Drainage & Play|Vegetated Swale|Topsoil 150, gravel drain|Surface water conveyance|turf:Grass or plants:25;soil::150;agg:Gravel drain:200;geo;sub",
+"s|Drainage & Play|Sand Play Area|Sand 300 deep|Playgrounds|sand:Play sand:300;geo;agg:Drainage gravel:100;sub",
+"s|Drainage & Play|Wood Chip Play Surface|Certified chips 300|Playgrounds|mulch:Wood chip surfacing:300;geo;agg:Drainage gravel:100;sub"];
+var D=RAW.map(function(r,i){var p=r.split('|');return{id:i,c:p[0],g:p[1],n:p[2],sz:p[3],u:p[4],L:p[5].split(';').map(function(s){var q=s.split(':');return[q[0],q[1]||DN[q[0]],+q[2]||0,q[3]||'']})}});
+var BASE=D,CUS=[],cat='h',cur=null,L=null,db=null,own=false,pend=null,ff={c:'h',g:'',n:'',sz:'',u:''},fr=[];
+function ALL(){return BASE.concat(CUS)}
+function esc(x){return String(x==null?'':x).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+function unesc(x){return String(x).replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&quot;/g,'"').replace(/&amp;/g,'&')}
+function $(i){return document.getElementById(i)}
+function tot(){return L.reduce(function(s,l){return s+(l[0]==='sub'?0:l[2])},0)}
+function fn(l,i){return i===0?'Finish 1 [4]':(FN[l[0]]||'Structure [1]')}
+function tree(){
+  var q=$('q').value.trim().toLowerCase(),gs={},h='';
+  ALL().forEach(function(d){if(d.c===cat&&(d.n+d.g).toLowerCase().indexOf(q)>-1){(gs[d.g]=gs[d.g]||[]).push(d)}});
+  var keys=Object.keys(gs),first=keys[0];
+  keys.forEach(function(g){
+    var open=q||(cur&&cur.g===g)||(!cur&&g===first);
+    h+='<details'+(open?' open':'')+'><summary>'+g+'</summary>'+gs[g].map(function(d){return '<button class="it" data-id="'+d.id+'" aria-pressed="'+(!!cur&&String(cur.id)===String(d.id))+'">'+d.n+(d.cu?'<span class="cu">added</span>':'')+'</button>'}).join('')+'</details>';
+  });
+  $('tree').innerHTML=h||'<div class="empty">No matching types.</div>';
+}
+function drawing(){
+  var X0=150,W=190,y=26,o='',k=Math.min(1,320/Math.max(tot(),1)),ly=0,tags='',yEnd=y;
+  var pats={conc:'<circle cx="3" cy="3" r=".9" class="f"/><path d="M7 10l2.5-4 2.5 4z" class="p"/>',sand:'<circle cx="2" cy="2" r=".7" class="f"/><circle cx="5" cy="5" r=".7" class="f"/>',agg:'<circle cx="5" cy="5" r="3.4" class="p"/><circle cx="12" cy="11" r="2" class="p"/>',sub:'<path d="M0 10L10 0M-2 2L2 -2M8 12L12 8" class="p"/>',soil:'<path d="M0 4h4M6 1h4M3 8h4" class="p"/>',mulch:'<path d="M1 2l3 1M5 6l3-1M2 8l2 1" class="p"/>',paver:'<path d="M0 0h12M0 6h12M6 0v6M0 6v6M0 12h12" class="p"/>',stone:'<path d="M0 12L12 0" class="p"/>',mort:'<circle cx="3" cy="3" r=".6" class="f"/>',turf:'<path d="M2 8l1-5M5 8l-1-4M8 8l1-4" class="p"/>',grav:'<circle cx="4" cy="4" r="2.2" class="p"/><path d="M8 11l2-3 2 3z" class="p"/>',plant:'<circle cx="5" cy="5" r="3" class="p"/>',drain:'<path d="M0 4q2-2 4 0t4 0" class="p"/>',timber:'<path d="M0 3h10M0 7h10" class="p"/>'};
+  var defs='<defs>'+Object.keys(pats).map(function(m){return '<pattern id="h-'+m+'" width="12" height="12" patternUnits="userSpaceOnUse">'+pats[m]+'</pattern>'}).join('')+'</defs>';
+  var lastY=y,topY=y;
+  L.forEach(function(l,i){
+    var m=l[0],mm=l[2],mem=/^(geo|wp|rb|pm)$/.test(m),gnd=m==='sub',h=mem?4:(gnd&&!mm?40:Math.max(7,mm*k)),x=gnd?X0-30:X0,w=gnd?W+60:W;
+    if(mem){o+='<rect x="'+X0+'" y="'+y+'" width="'+W+'" height="4" style="fill:'+(m==='wp'?'var(--ink)':F[m])+'" stroke="var(--ink)" stroke-width=".6"/>'}
+    else{
+      if(m!=='air')o+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="'+F[m]+'" fill-opacity=".5"/>';
+      if(HP[m])o+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="url(#h-'+HP[m]+')"/>';
+      o+='<rect x="'+x+'" y="'+y+'" width="'+w+'" height="'+h+'" fill="none" stroke="var(--ink)" stroke-width="'+(m==='air'?.8:1.3)+'"'+(m==='air'?' stroke-dasharray="4 3"':'')+'/>';
+    }
+    if(mm&&!gnd){o+='<path d="M'+(X0-4)+' '+y+'H'+(X0-44)+'M'+(X0-4)+' '+(y+h)+'H'+(X0-44)+'M'+(X0-40)+' '+y+'V'+(y+h)+'" stroke="var(--ink)" stroke-width=".6" fill="none"/><text x="'+(X0-46)+'" y="'+(y+h/2+4)+'" text-anchor="end">'+mm+'</text>'}
+    var mid=y+h/2;ly=Math.max(mid,ly+15);
+    tags+='<path d="M'+(X0+W)+' '+mid+'L'+(X0+W+16)+' '+ly+'H'+(X0+W+38)+'" stroke="var(--ink)" stroke-width=".6" fill="none"/><text x="'+(X0+W+42)+'" y="'+(ly+4)+'">'+(i+1)+'  '+l[1]+(mm?'  –  '+mm:'')+'</text>';
+    y+=h;if(!gnd)lastY=y;
+  });
+  var tt=tot(),od='<path d="M'+(X0-94)+' '+topY+'v'+(lastY-topY)+'M'+(X0-100)+' '+topY+'h12M'+(X0-100)+' '+lastY+'h12" stroke="var(--ink)" stroke-width=".8" fill="none"/><text transform="rotate(-90 '+(X0-98)+' '+((topY+lastY)/2)+')" x="'+(X0-98)+'" y="'+((topY+lastY)/2)+'" text-anchor="middle" style="font-weight:600">'+tt+' mm</text>';
+  var ffl='<path d="M10 '+topY+'H'+(X0+W+20)+'" stroke="var(--ink)" stroke-width=".7" stroke-dasharray="8 3 2 3" fill="none"/><text x="12" y="'+(topY-5)+'" style="font-weight:600">FFL ±0.00</text>';
+  return '<svg viewBox="0 0 700 '+(Math.max(y,ly)+60)+'" role="img" aria-label="Section of '+cur.n+'">'+defs+ffl+o+tags+od+'</svg>';
+}
+function propsHtml(){
+  var kv=[['Family','Floor: Landscape Assembly'],['Type',cur.n],['Category',cat==='h'?'Hardscape':'Softscape'],['Group',cur.g],['Unit / size',cur.sz],['Typical use',cur.u],['Layers',L.length],['Total thickness','<b id="tt">'+tot()+' mm</b>']];
+  var rows=L.map(function(l,i){
+    return '<tr><td>'+(i+1)+'</td><td>'+fn(l,i)+'</td><td><span class="sw" style="background:'+F[l[0]]+'"></span>'+l[1]+(l[3]?'<span class="sm">'+l[3]+'</span>':'')+'</td><td>'+(l[0]==='sub'&&!l[2]?'—':'<input type="number" min="0" step="5" value="'+l[2]+'" data-i="'+i+'" aria-label="Thickness of '+l[1]+'">')+'</td></tr>'}).join('');
+  return '<table class="kv">'+kv.map(function(r){return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>'}).join('')+'</table>'+
+  '<h3 style="margin-top:10px">Edit Assembly (top = exterior)</h3><table><thead><tr><th>#</th><th>Function</th><th>Material</th><th>Thick. (mm)</th></tr></thead><tbody>'+rows+'</tbody></table>'+
+  (cur.cu&&own?'<div class="note"><button class="btn" id="del">Delete this type</button></div>':'')+'<div class="note">Typical values for guidance only. Follow project specifications and the structural engineer’s and supplier’s requirements. Edits here are temporary and not saved.</div>';
+}
+function render(){
+  if(!cur){$('view').innerHTML='<div class="empty">Select a floor type from the Project Browser to view its section.</div>';$('props').innerHTML='<div class="empty">No type selected.</div>';return}
+  $('view').innerHTML='<div class="wrap" id="dr">'+drawing()+'</div><div class="vt"><b>Section – '+cur.n+'</b><div>Scale: NTS · Dimensions in mm · Thin layers exaggerated</div></div>';
+  $('props').innerHTML=propsHtml();
+}
+function pick(id){cur=ALL().filter(function(d){return String(d.id)===String(id)})[0];if(!cur)return;L=cur.L.map(function(l){return l.slice()});tree();render()}
+function txt(){return unesc(cur.n+' ('+cur.sz+')\n'+L.map(function(l,i){return (i+1)+'. '+l[1]+(l[2]?' – '+l[2]+' mm':'')}).join('\n')+'\nTotal: '+tot()+' mm (excluding subgrade)')}
+function formHtml(){
+  var gl={};ALL().forEach(function(d){gl[d.g]=1});
+  var mo=Object.keys(DN).map(function(k){return '<option value="'+k+'">'+DN[k]+'</option>'}).join('');
+  var rows=fr.map(function(r,i){return '<div class="fr"><select data-r="'+i+'" data-k="0" aria-label="Material">'+mo.replace('value="'+r[0]+'"','value="'+r[0]+'" selected')+'</select><input class="nm" data-r="'+i+'" data-k="1" value="'+esc(r[1])+'" placeholder="'+esc(DN[r[0]])+'" aria-label="Layer name"><input class="mm" type="number" min="0" step="5" data-r="'+i+'" data-k="2" value="'+esc(r[2])+'" aria-label="Thickness mm"><input class="nt" data-r="'+i+'" data-k="3" value="'+esc(r[3])+'" placeholder="Note" aria-label="Note"><button class="btn" data-rm="'+i+'" aria-label="Remove layer">×</button></div>'}).join('');
+  return '<div class="form"><h3>Add Floor Type</h3>'+
+  '<div class="fg"><label>Category</label><select data-f="c"><option value="h"'+(ff.c==='h'?' selected':'')+'>Hardscape</option><option value="s"'+(ff.c==='s'?' selected':'')+'>Softscape</option></select>'+
+  '<label>Group</label><input data-f="g" list="gl" value="'+esc(ff.g)+'" placeholder="e.g. Pavers"><datalist id="gl">'+Object.keys(gl).map(function(g){return '<option value="'+g+'">'}).join('')+'</datalist>'+
+  '<label>Type name</label><input data-f="n" value="'+esc(ff.n)+'"><label>Unit / size</label><input data-f="sz" value="'+esc(ff.sz)+'" placeholder="600×300 mm, 30 thick"><label>Typical use</label><input data-f="u" value="'+esc(ff.u)+'"></div>'+
+  '<b>Layers (top = exterior)</b>'+rows+'<div class="fr"><button class="btn" id="al">+ Add layer</button></div><div id="fm"></div><div class="fr"><button class="btn pri" id="sv">Save type</button><button class="btn" id="cn">Cancel</button></div></div>';
+}
+function openForm(){
+  ff={c:cat,g:'',n:'',sz:'',u:''};
+  fr=[['paver','',60,''],['sand','',30,''],['agg','',150,''],['sub','',0,'']];
+  $('view').innerHTML=formHtml();$('props').innerHTML='<div class="note">Pick a material for each layer. The material sets the hatch in the section. Leave the name empty to use the default material name. Use 0 mm for membranes and subgrade.</div>';
+}
+function msg(t){var m=$('fm');if(m)m.textContent=t}
+async function save(){
+  var rows=fr.map(function(r){return [r[0],String(r[1]||DN[r[0]]).trim(),Math.max(0,+r[2]||0),String(r[3]||'').trim()]});
+  if(!ff.n.trim()||!ff.g.trim()){msg('Enter a group and a type name.');return}
+  if(!rows.length){msg('Add at least one layer.');return}
+  try{var ref=await db.collection('types').add({c:ff.c,g:ff.g.trim(),n:ff.n.trim(),sz:ff.sz.trim(),u:ff.u.trim(),L:JSON.stringify(rows)});pend='c-'+ref.id;msg('Saved.')}
+  catch(e){msg('Could not save: '+((e&&(e.message||e.code))||'error'))}
+}
+document.addEventListener('click',function(e){
+  var t=e.target;
+  if(t.id==='add'){openForm();return}
+  if(t.id==='al'){fr.push(['agg','',0,'']);$('view').innerHTML=formHtml();return}
+  if(t.dataset&&t.dataset.rm!==undefined){fr.splice(+t.dataset.rm,1);$('view').innerHTML=formHtml();return}
+  if(t.id==='cn'){render();return}
+  if(t.id==='sv'){save();return}
+  if(t.id==='del'&&cur&&cur.cu){
+    if(!t.dataset.sure){t.dataset.sure=1;t.textContent='Click again to delete';return}
+    db.collection('types').doc(cur.did).delete().catch(function(){t.textContent='Delete failed'});return}
+  if(t.classList.contains('tab')){cat=t.dataset.c;document.querySelectorAll('.tab').forEach(function(b){b.setAttribute('aria-pressed',b===t)});cur=null;tree();render();return}
+  var it=t.closest('.it');if(it){pick(it.dataset.id);$('view').scrollIntoView({block:'start'});return}
+  if(!cur)return;
+  if(t.id==='rs')pick(cur.id);
+  if(t.id==='pr')window.print();
+  if(t.id==='cp'){try{navigator.clipboard.writeText(txt()).then(function(){t.textContent='Copied'},function(){t.textContent='Copy unavailable'})}catch(x){t.textContent='Copy unavailable'}}
+});
+document.addEventListener('input',function(e){
+  var t=e.target;
+  if(t.id==='q'){tree();return}
+  if(t.dataset&&t.dataset.f){ff[t.dataset.f]=t.value;return}
+  if(t.dataset&&t.dataset.r!==undefined){fr[+t.dataset.r][+t.dataset.k]=t.value;return}
+  if(t.dataset&&t.dataset.i!==undefined){L[+t.dataset.i][2]=Math.max(0,+t.value||0);$('dr').innerHTML=drawing();$('tt').textContent=tot()+' mm'}
+});
+tree();render();
+(async function(){
+  if(typeof claude==='undefined'||!claude.use)return;
+  try{var u=await claude.use('user');own=u?await u.isOwner():false}catch(e){}
+  try{db=await claude.use('db')}catch(e){}
+  if(!db)return;
+  $('lib').hidden=!own;
+  db.collection('types').onSnapshot(function(sn){
+    CUS=[];
+    sn.docs.forEach(function(d){
+      try{var x=d.data()||{},ls=JSON.parse(x.L||'[]').filter(function(l){return F[l[0]]}).map(function(l){return [l[0],esc(l[1]),Math.max(0,+l[2]||0),esc(l[3])]});
+        if(ls.length&&(x.c==='h'||x.c==='s')&&x.n)CUS.push({id:'c-'+d.id,did:d.id,c:x.c,g:esc(x.g||'Other'),n:esc(x.n),sz:esc(x.sz),u:esc(x.u),L:ls,cu:1})}catch(e){}
+    });
+    if(pend&&CUS.some(function(d){return d.id===pend})){var pp=pend;pend=null;cat=CUS.filter(function(d){return d.id===pp})[0].c;document.querySelectorAll('.tab').forEach(function(b){b.setAttribute('aria-pressed',b.dataset.c===cat)});pick(pp);return}
+    if(cur&&cur.cu&&!CUS.some(function(d){return d.id===cur.id})){cur=null;L=null;render()}
+    tree();
+  },function(){});
+})();
+</script>
+</body>
+</html>
